@@ -1,0 +1,27 @@
+[package]
+name = "carmen"
+version = "0.1.0"
+authors = ["chris.henderson <chris@chenderson.org>"]
+edition = "2018"
+categories = ["algorithms", "concurrency"]
+
+[dependencies]
+crossbeam = "0.7.1"
+time = "*"
+
+
+[profile.dev]
+opt-level = 3
+
+# The testing profile, used for `cargo test` (for `cargo test --release` see
+# the `release` and `bench` profiles).
+[profile.test]
+opt-level = 3
+debug = 2
+rpath = false
+lto = false
+debug-assertions = true
+codegen-units = 16
+panic = 'unwind'
+incremental = true
+overflow-checks = true
