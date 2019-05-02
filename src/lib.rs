@@ -3,7 +3,6 @@ extern crate crossbeam;
 
 pub mod sequential;
 pub mod parallel;
-mod tree;
 
 #[cfg(test)]
 mod tests {
@@ -48,7 +47,7 @@ mod tests {
     #[test]
     fn base_par() {
         let answers = crossbeam::atomic::AtomicCell::<usize>::new(0);
-        let n = 15;
+        let n = 10;
         parallel::search(
             Queen::new(0, 0, n),
             |solution, candidate| {
@@ -75,13 +74,13 @@ mod tests {
                 return false;
             },
         );
-//        assert_eq!(365596, answers.load());
+//        assert_eq!(14772512, answers.load());
     }
 
     #[test]
     fn base_seq() {
         let answers = crossbeam::atomic::AtomicCell::<usize>::new(0);
-        let n = 15;
+        let n = 10;
         sequential::search(
             Queen::new(0, 0, n),
             |solution, candidate| {
@@ -108,7 +107,7 @@ mod tests {
                 return false;
             },
         );
-//        assert_eq!(365596, answers.load());
+//        assert_eq!(92, answers.load());
     }
 
     #[test]
